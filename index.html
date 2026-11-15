@@ -63,6 +63,12 @@ textarea{height:90px;margin-top:8px;font-size:13px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:3px solid var(--ink);border-radius:999px;background:#fff;padding:2px 14px;cursor:pointer}.chip.on{background:var(--coral);transform:translateY(-2px)}
 .rec{background:var(--green)}.bar{height:14px;border:3px solid var(--ink);border-radius:999px;background:#fff;overflow:hidden}.bar i{display:block;height:100%;background:var(--coral)}
 .full{opacity:.6}.full .nm{text-decoration:line-through}.pill{display:inline-block;border:2px solid var(--ink);border-radius:999px;padding:0 9px;font-size:12px;background:var(--sky);margin-right:4px}.pill.f{background:var(--coral)}
+html,body{max-width:100%;overflow-x:hidden}
+main,section,.card,.grid>div{min-width:0}.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+input[type=text],input[type=time],input[type=date],input[type=number],select,textarea{min-width:0;max-width:100%}
+input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;display:block;text-align:left}
+.add input{flex:1;min-width:0}.add .btn{flex:none}
+.tt,.tm,.nm,.tl li,.ck span,label{overflow-wrap:anywhere}img,svg{max-width:100%}
 </style></head><body>
 <nav><a href="#home">首頁</a><a href="#flight">航班</a><a href="#plan">行程</a><a href="#pay">優惠</a><a href="#todo">待辦</a><a href="#stay">住宿</a><a href="#pre">出發前</a><a href="#pack">行李</a></nav>
 <main>
