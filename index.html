@@ -69,21 +69,30 @@ input[type=text],input[type=time],input[type=date],input[type=number],select,tex
 input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;display:block;text-align:left}
 .add input{flex:1;min-width:0}.add .btn{flex:none}
 .tt,.tm,.nm,.tl li,.ck span,label{overflow-wrap:anywhere}img,svg{max-width:100%}
+.tw circle{animation:blink 1.6s steps(2) infinite}.tw circle:nth-child(2n){animation-delay:-.8s}.swing{transform-box:fill-box;transform-origin:50% 0;animation:swg 3s ease-in-out infinite alternate}@keyframes swg{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+.nt{margin-top:4px;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;opacity:.85}#f-note,#p-note{height:64px;margin-top:0}.tc{display:inline-block;margin:0;font-size:15px;cursor:pointer}
 </style></head><body>
-<nav><a href="#home">首頁</a><a href="#flight">航班</a><a href="#plan">行程</a><a href="#pay">優惠</a><a href="#todo">待辦</a><a href="#stay">住宿</a><a href="#pre">出發前</a><a href="#pack">行李</a></nav>
+<nav><a href="#home">首頁</a><a href="#flight">航班</a><a href="#plan">行程</a><a href="#pay">優惠</a><a href="#stay">住宿</a></nav>
 <main>
 <section id="home" style="margin-top:14px"><div class="card hero">
-<svg viewBox="0 0 360 230" role="img" aria-label="仙台與東京插圖：東京鐵塔、新幹線、こけし與雪">
+<svg viewBox="0 0 360 230" role="img" aria-label="仙台與東京插圖：伊達政宗、光之都的櫸木、富士山、雷門燈籠、東京鐵塔與新幹線">
 <rect width="360" height="230" fill="#A8D3E6"/>
-<circle cx="296" cy="52" r="26" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
-<g class="cloud"><path d="M30 62h74a16 16 0 0 0-8-29 22 22 0 0 0-42 4 16 16 0 0 0-24 25z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/></g>
-<g class="cloud b"><path d="M190 40h60a13 13 0 0 0-6-23 18 18 0 0 0-35 3 13 13 0 0 0-19 20z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/></g>
-<path d="M-5 190 Q60 120 130 160 Q200 110 270 155 Q320 130 365 165V235H-5z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/>
-<g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><path d="M240 175 L258 70 L276 175z" fill="#F2A497"/><path d="M247 135h22M251 105h14" fill="none"/><path d="M232 175h52" /><path d="M258 70V48" fill="none"/></g>
-<circle class="lamp" cx="258" cy="46" r="5" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
-<g class="koke"><circle cx="66" cy="124" r="20" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/><path d="M46 122a20 20 0 0 1 40 0 20 14 0 0 0-40 0z" fill="#3E3A39"/><circle cx="59" cy="128" r="2.5" fill="#3E3A39"/><circle cx="73" cy="128" r="2.5" fill="#3E3A39"/><circle cx="55" cy="135" r="4" fill="#F2A497"/><circle cx="77" cy="135" r="4" fill="#F2A497"/><path d="M52 143h28l5 42H47z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/><path d="M52 160q14 10 28 0" fill="none" stroke="#F2A497" stroke-width="5"/></g>
-<rect x="-5" y="196" width="370" height="40" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/>
-<path d="M0 206h360M0 216h360" stroke="#3E3A39" stroke-width="3"/>
+<circle cx="200" cy="40" r="16" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+<g class="cloud"><path d="M104 78h64a13 13 0 0 0-6-24 18 18 0 0 0-35 3 13 13 0 0 0-23 21z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/></g>
+<path d="M140 190L220 74 300 190z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+<path d="M196 106L220 74 244 106 232 100 220 110 208 100z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+<path d="M-5 196Q60 150 130 176 Q200 146 270 172 Q320 150 365 176V235H-5z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/>
+<g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><path d="M300 40L276 196H324z" fill="#F2A497"/><path d="M292 78H308M287 112H313M282 146H318" fill="none"/><rect x="289" y="94" width="22" height="9" rx="3" fill="#FFFCF6"/><path d="M300 40V24" fill="none"/></g>
+<circle class="lamp" cx="300" cy="21" r="5" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+<g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><rect x="199" y="148" width="8" height="48" fill="#F2A497"/><rect x="243" y="148" width="8" height="48" fill="#F2A497"/><path d="M188 132H262L254 148H196z" fill="#3E3A39"/></g>
+<g class="swing"><rect x="216" y="148" width="18" height="5" fill="#3E3A39"/><rect x="213" y="153" width="24" height="32" rx="11" fill="#F2A497" stroke="#3E3A39" stroke-width="3"/><path d="M214 168H236" stroke="#3E3A39" stroke-width="2"/><text x="225" y="165" font-size="9" text-anchor="middle" fill="#3E3A39" font-family="Huninn,sans-serif">雷</text><text x="225" y="178" font-size="9" text-anchor="middle" fill="#3E3A39" font-family="Huninn,sans-serif">門</text></g>
+<g stroke="#3E3A39" stroke-width="3"><path d="M18 196V152M122 196V150M160 196V158" fill="none" stroke-width="5"/><circle cx="18" cy="136" r="19" fill="#B9DAA5"/><circle cx="122" cy="138" r="21" fill="#B9DAA5"/><circle cx="160" cy="148" r="15" fill="#B9DAA5"/></g>
+<g class="tw" fill="#F6D27A" stroke="#3E3A39" stroke-width="1.5"><circle cx="10" cy="130" r="3"/><circle cx="24" cy="126" r="3"/><circle cx="18" cy="142" r="3"/><circle cx="112" cy="132" r="3"/><circle cx="128" cy="128" r="3"/><circle cx="122" cy="146" r="3"/><circle cx="132" cy="142" r="3"/><circle cx="154" cy="144" r="3"/><circle cx="165" cy="152" r="3"/></g>
+<g class="koke"><path d="M52 144H88L96 196H44z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/><path d="M58 144L70 160 82 144" fill="none" stroke="#F2A497" stroke-width="5"/><path d="M47 174H93" stroke="#F2A497" stroke-width="7"/>
+<circle cx="70" cy="124" r="19" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/><path d="M51 122Q52 98 70 97 88 98 89 122 70 112 51 122z" fill="#3E3A39"/><path d="M54 96Q70 50 86 96 70 80 54 96z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="62" cy="128" r="2.5" fill="#3E3A39"/><circle cx="78" cy="128" r="5.5" fill="#3E3A39"/><circle cx="58" cy="136" r="3.5" fill="#F2A497"/><circle cx="83" cy="138" r="3.5" fill="#F2A497"/><path d="M65 137q4 3 8 0" fill="none" stroke="#3E3A39" stroke-width="2"/></g>
+<g><rect x="12" y="12" width="58" height="26" rx="13" fill="#F2A497" stroke="#3E3A39" stroke-width="3"/><text x="41" y="31" font-size="15" text-anchor="middle" fill="#3E3A39" font-family="Huninn,sans-serif">仙台</text><rect x="232" y="12" width="58" height="26" rx="13" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/><text x="261" y="31" font-size="15" text-anchor="middle" fill="#3E3A39" font-family="Huninn,sans-serif">東京</text></g>
+<rect x="-5" y="196" width="370" height="40" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/><path d="M0 208h360M0 218h360" stroke="#3E3A39" stroke-width="3"/>
 <g class="train" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><path d="M0 172h96q22 0 34 22H0z" fill="#FFFCF6"/><rect x="0" y="180" width="124" height="7" fill="#B9DAA5" stroke="none"/><rect x="10" y="158" width="100" height="16" rx="6" fill="#FFFCF6"/><rect x="18" y="162" width="14" height="9" fill="#A8D3E6"/><rect x="40" y="162" width="14" height="9" fill="#A8D3E6"/><rect x="62" y="162" width="14" height="9" fill="#A8D3E6"/><circle cx="30" cy="196" r="6" fill="#F6D27A"/><circle cx="96" cy="196" r="6" fill="#F6D27A"/></g>
 <g class="snow" fill="#FFFCF6" stroke="#3E3A39" stroke-width="1.5"><circle cx="30" cy="0" r="3"/><circle cx="90" cy="-20" r="2.5"/><circle cx="150" cy="-5" r="3"/><circle cx="205" cy="-30" r="2.5"/><circle cx="320" cy="-10" r="3"/><circle cx="345" cy="-40" r="2.5"/><circle cx="120" cy="-50" r="3"/></g>
 </svg></div>
@@ -93,22 +102,16 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;displa
 <section id="flight"><h2>✈️ 航班</h2><div id="fl"></div></section>
 <section id="plan"><h2>🗓 每日行程</h2><div class="tabs" id="tabs"></div><div id="day"></div></section>
 <section id="pay"><h2>💳 刷卡優惠</h2><div class="card c3"><div style="margin-bottom:6px">現在要買什麼？</div><div class="chips" id="chips"></div><label>預計消費金額（台幣，可不填）</label><input type="number" inputmode="numeric" id="amt" placeholder="例：3000"><div id="rec"></div></div><div id="offers"></div></section>
-<section id="todo"><h2>📝 待辦清單</h2><div class="card c1"><div id="L-todo"></div></div></section>
 <section id="stay"><h2>🏠 住宿資訊</h2><div id="st"></div></section>
-<section id="pre"><h2>📋 出發前清單</h2><div class="card c2"><div id="L-pre"></div></div></section>
-<section id="pack"><h2>🧳 行李清單</h2><div class="card c3"><div id="L-pack"></div></div></section>
 <section id="bk"><h2>💾 備份</h2><div class="card"><p style="margin:0 0 8px;font-size:14px">資料只存在這個瀏覽器。換手機前請先匯出，再到新裝置貼上匯入。</p>
 <button class="btn s" id="ex">匯出</button> <button class="btn c" id="im">匯入</button><textarea id="ta" placeholder="匯出的內容會顯示在這裡；匯入請貼上後按「匯入」"></textarea></div></section>
 </main>
 <script>
 const KEY='trip-sendai-tokyo',$=s=>document.querySelector(s),
 esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const TR=['飛機','新幹線','電車','地鐵','巴士','步行','計程車'],WD=['二','三','四','五','六','日','一'];
-const ls=a=>a.map(t=>({t,d:0}));
+const TR=['飛機','新幹線','地鐵','巴士','步行','計程車'],WD=['二','三','四','五','六','日','一'];
 const def=()=>({fl:{out:{},back:{}},st:[{c:'仙台'},{c:'東京'}],
-days:[[{time:'',title:'抵達仙台',tr:'飛機',must:0}],[],[],[],[],[],[{time:'',title:'前往機場，回程',tr:'電車',must:0}]],
-L:{todo:ls(['預訂仙台↔東京新幹線','排定每日行程']),pre:ls(['確認護照效期','填寫 Visit Japan Web','準備 eSIM／網卡','兌換日幣現金','購買旅遊保險','確認住宿訂房','下載地圖與翻譯 App']),
-pack:ls(['護照','日幣現金與信用卡','手機與充電線','行動電源（隨身攜帶）','保暖外套','發熱衣、毛帽、手套','好走的鞋','盥洗用品與常備藥','摺疊傘'])}});
+days:[[{time:'',title:'抵達仙台',tr:'飛機',must:0}],[],[],[],[],[],[{time:'',title:'前往機場，回程',tr:[],must:0}]]});
 let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}if(!S||!S.days)S=def();
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 let cur=0,ed=null;
@@ -122,31 +125,26 @@ else cd.textContent='旅程結束，歡迎回家 🏡';
 const F=(p,l,ph,ty)=>`<div><label>${l}</label><input type="${ty||'text'}" data-p="${p}" placeholder="${ph||''}" value="${esc(p.split('.').reduce((o,k)=>o&&o[k],S))}"></div>`;
 const flc=(k,n,col)=>`<div class="card ${col}"><span class="fh">${n}</span><div class="grid">${F('fl.'+k+'.no','航班號','例：BR000')}${F('fl.'+k+'.date','日期','','date')}${F('fl.'+k+'.from','出發機場','TPE')}${F('fl.'+k+'.to','抵達機場','SDJ')}${F('fl.'+k+'.dep','起飛時間','','time')}${F('fl.'+k+'.arr','抵達時間','','time')}</div></div>`;
 $('#fl').innerHTML=flc('out','去程 12/1','c1')+flc('back','回程 12/7','c3');
-$('#st').innerHTML=S.st.map((s,i)=>`<div class="card ${i?'c3':'c1'}"><span class="fh">${s.c}</span>${F('st.'+i+'.n','住宿名稱')}${F('st.'+i+'.a','地址')}<div class="grid">${F('st.'+i+'.i','入住日期','','date')}${F('st.'+i+'.o','退房日期','','date')}</div>${F('st.'+i+'.m','訂房編號／備註')}</div>`).join('');
+$('#st').innerHTML=S.st.map((s,i)=>`<div class="card ${i?'c3':'c1'}"><span class="fh">${s.c}</span>${F('st.'+i+'.n','住宿名稱')}<div class="grid">${F('st.'+i+'.i','入住日期','','date')}${F('st.'+i+'.o','退房日期','','date')}</div>${F('st.'+i+'.pr','住宿總價','例：NT$ 24,000 或 ¥60,000')}${F('st.'+i+'.m','訂房編號／備註')}</div>`).join('');
 document.addEventListener('input',e=>{const p=e.target.dataset.p;if(!p)return;const k=p.split('.');let o=S;k.slice(0,-1).forEach(x=>{o[x]=o[x]||{};o=o[x]});o[k.pop()]=e.target.value;save()});
 /* days */
 function tabs(){$('#tabs').innerHTML=S.days.map((_,i)=>`<button class="tab ${i==cur?'on':''}" data-d="${i}" aria-label="12/${i+1}"><small>週${WD[i]}</small><b>12/${i+1}</b></button>`).join('')}
-const form=(it,i)=>`<li><label>時間</label><input type="time" id="f-time" value="${esc(it.time)}"><label>行程</label><input type="text" id="f-title" value="${esc(it.title)}" placeholder="地點或活動"><label>交通方式</label><select id="f-tr">${TR.map(t=>`<option ${t==it.tr?'selected':''}>${t}</option>`).join('')}</select><label><input type="checkbox" id="f-must" ${it.must?'checked':''}> 必去 ⭐</label><div class="acts"><button class="btn sm" data-a="ok" data-i="${i}">儲存</button><button class="btn sm c" data-a="no">取消</button></div></li>`;
+const trs=it=>(Array.isArray(it.tr)?it.tr:(it.tr?[it.tr]:[])).filter(t=>TR.includes(t));
+const form=(it,i)=>`<li><label>時間（可不填）</label><input type="time" id="f-time" value="${esc(it.time)}"><label>行程</label><input type="text" id="f-title" value="${esc(it.title)}" placeholder="地點或活動"><label>交通方式（可複選）</label><div class="chips">${TR.map(t=>`<label class="chip tc ${trs(it).includes(t)?'on':''}"><input type="checkbox" class="f-tr" value="${t}" ${trs(it).includes(t)?'checked':''} hidden>${t}</label>`).join('')}</div><label>備註</label><textarea id="f-note" placeholder="例：訂位資訊、營業時間、注意事項">${esc(it.note)}</textarea><label><input type="checkbox" id="f-must" ${it.must?'checked':''}> 必去 ⭐</label><div class="acts"><button class="btn sm" data-a="ok" data-i="${i}">儲存</button><button class="btn sm c" data-a="no">取消</button></div></li>`;
 function day(anim){const A=S.days[cur];let h=`<div class="card ${anim?'pop':''}"><ul class="tl">`;
-A.forEach((it,i)=>{h+=ed===i?form(it,i):`<li><div class="tm">${esc(it.time)||'時間未定'}</div><div class="tt">${esc(it.title)}</div>${it.tr?`<span class="tag t-${it.tr}">${it.tr}</span>`:''}${it.must?'<span class="must">必去</span>':''}<div class="acts"><button class="btn sm s" data-a="ed" data-i="${i}">編輯</button><button class="btn sm c" data-a="del" data-i="${i}">刪除</button></div></li>`});
-if(ed==='new')h+=form({time:'',title:'',tr:'電車',must:0},'new');
+A.forEach((it,i)=>{h+=ed===i?form(it,i):`<li>${it.time?`<div class="tm">${esc(it.time)}</div>`:''}<div class="tt">${esc(it.title)}</div>${trs(it).map(t=>`<span class="tag t-${t}">${t}</span>`).join('')}${it.must?'<span class="must">必去</span>':''}${it.note?`<div class="nt">${esc(it.note)}</div>`:''}<div class="acts"><button class="btn sm s" data-a="ed" data-i="${i}">編輯</button><button class="btn sm c" data-a="del" data-i="${i}">刪除</button></div></li>`});
+if(ed==='new')h+=form({time:'',title:'',tr:[],note:'',must:0},'new');
 if(!A.length&&ed!=='new')h+='<li class="empty">這天還沒有行程</li>';
 h+=`</ul>${ed===null?'<button class="btn" data-a="add">＋ 新增行程</button>':''}</div>`;$('#day').innerHTML=h}
 $('#tabs').onclick=e=>{const b=e.target.closest('.tab');if(!b)return;cur=+b.dataset.d;ed=null;tabs();day(1)};
+$('#day').onchange=e=>{if(e.target.classList.contains('f-tr'))e.target.parentNode.classList.toggle('on',e.target.checked)};
 $('#day').onclick=e=>{const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,i=b.dataset.i,A=S.days[cur];
 if(a=='add')ed='new';else if(a=='ed')ed=+i;else if(a=='no')ed=null;else if(a=='del'){A.splice(+i,1)}
-else if(a=='ok'){const it={time:$('#f-time').value,title:$('#f-title').value.trim()||'未命名行程',tr:$('#f-tr').value,must:$('#f-must').checked?1:0};
+else if(a=='ok'){const it={time:$('#f-time').value,title:$('#f-title').value.trim()||'未命名行程',tr:[...document.querySelectorAll('.f-tr:checked')].map(x=>x.value),note:$('#f-note').value.trim(),must:$('#f-must').checked?1:0};
 if(i=='new')A.push(it);else A[+i]=it;A.sort((x,y)=>(x.time||'99').localeCompare(y.time||'99'));ed=null}save();day()};
-/* lists */
-function list(k){const a=S.L[k];$('#L-'+k).innerHTML=`<ul class="ck">${a.map((x,i)=>`<li><input type="checkbox" data-k="${k}" data-i="${i}" ${x.d?'checked':''} aria-label="${esc(x.t)}"><span>${esc(x.t)}</span><button class="x" data-k="${k}" data-x="${i}" aria-label="刪除">✕</button></li>`).join('')}</ul><div class="add"><input type="text" id="n-${k}" placeholder="新增項目"><button class="btn" data-k="${k}" data-add="1">新增</button></div>`}
-['todo','pre','pack'].forEach(k=>{list(k);$('#L-'+k).onclick=e=>{const t=e.target,a=S.L[k];
-if(t.type=='checkbox'){a[+t.dataset.i].d=t.checked?1:0;save();list(k)}
-else if(t.dataset.x!=null){a.splice(+t.dataset.x,1);save();list(k)}
-else if(t.dataset.add){const v=$('#n-'+k).value.trim();if(v){a.push({t:v,d:0});save();list(k)}}};
-$('#L-'+k).onkeydown=e=>{if(e.key=='Enter'&&e.target.type=='text')$('#L-'+k+' .btn').click()}});
 /* backup */
 $('#ex').onclick=()=>{const t=$('#ta');t.value=JSON.stringify(S);t.select();try{navigator.clipboard.writeText(t.value)}catch(e){}};
-$('#im').onclick=()=>{try{const d=JSON.parse($('#ta').value);if(!d.days||!d.L)throw 0;S=d;save();location.reload()}catch(e){alert('匯入失敗，請確認內容完整')}};
+$('#im').onclick=()=>{try{const d=JSON.parse($('#ta').value);if(!d.days)throw 0;S=d;save();location.reload()}catch(e){alert('匯入失敗，請確認內容完整')}};
 /* pay */
 S.cards=S.cards||[];let pc='餐廳',pe=null;
 const CATS=['餐廳','藥妝','購物','超商','交通','住宿','網購','其他'];
@@ -156,13 +154,13 @@ function rec(){const a=+$('#amt').value||0,all=S.cards.filter(o=>o.cat==='全部
 c=all.filter(o=>live(o)&&rem(o)>0).map(o=>({o,r:a?Math.min(a*o.rate/100,rem(o)):0})).sort((x,y)=>y.r-x.r||y.o.rate-x.o.rate),fu=all.filter(o=>live(o)&&rem(o)<=0);let h='';
 if(!c.length)h='<div class="card" style="margin:10px 0 0">目前沒有可用的優惠'+(S.cards.length?'（可能額度已滿、已過期或類別不符）':'，請先在下方新增')+'。</div>';
 else{const t=c[0],o=t.o,fr=a*o.rate/100;
-h=`<div class="card rec" style="margin:10px 0 0"><div class="tm">推薦使用</div><div style="font-size:22px">${esc(o.card)}</div><div>${esc(o.name)}・回饋 ${o.rate}%</div>${a?`<div>預估回饋 ${money(t.r)}${t.r<fr?'（額度不足，只回饋剩餘部分）':''}</div>`:''}<div>剩餘額度 ${money(rem(o))}</div>${a&&t.r>0?`<div class="acts"><button class="btn sm" data-r="${S.cards.indexOf(o)}">記一筆消費</button></div>`:''}</div>`;
+h=`<div class="card rec" style="margin:10px 0 0"><div class="tm">推薦使用</div><div style="font-size:22px">${esc(o.card)}</div><div>${esc(o.name)}・回饋 ${o.rate}%</div>${a?`<div>預估回饋 ${money(t.r)}${t.r<fr?'（額度不足，只回饋剩餘部分）':''}</div>`:''}<div>剩餘額度 ${money(rem(o))}</div>${o.note?`<div class="nt">${esc(o.note)}</div>`:''}${a&&t.r>0?`<div class="acts"><button class="btn sm" data-r="${S.cards.indexOf(o)}">記一筆消費</button></div>`:''}</div>`;
 c.slice(1,3).forEach(x=>h+=`<div class="tm" style="margin-top:6px">備選：${esc(x.o.card)} ${esc(x.o.name)}・${x.o.rate}%・剩 ${money(rem(x.o))}</div>`)}
 if(fu.length)h+=`<div class="tm" style="margin-top:6px">已額滿：${fu.map(o=>esc(o.card)).join('、')}</div>`;$('#rec').innerHTML=h}
-const oform=(o,i)=>`<div class="card"><label>卡片名稱</label><input type="text" id="p-card" value="${esc(o.card)}" placeholder="例：國泰 CUBE 卡"><label>優惠內容</label><input type="text" id="p-name" value="${esc(o.name)}" placeholder="例：日本消費 3.5%"><label>適用類別</label><select id="p-cat">${['全部',...CATS].map(c=>`<option ${c==o.cat?'selected':''}>${c}</option>`).join('')}</select><div class="grid"><div><label>回饋率 %</label><input type="number" step="0.1" id="p-rate" value="${o.rate??''}"></div><div><label>回饋上限（元，空白＝無上限）</label><input type="number" id="p-cap" value="${o.cap||''}"></div><div><label>已回饋（元）</label><input type="number" id="p-used" value="${o.used||0}"></div><div></div><div><label>開始日</label><input type="date" id="p-s" value="${o.s||''}"></div><div><label>結束日</label><input type="date" id="p-e" value="${o.e||''}"></div></div><div class="acts"><button class="btn sm" data-o="ok" data-i="${i}">儲存</button><button class="btn sm c" data-o="no">取消</button></div></div>`;
+const oform=(o,i)=>`<div class="card"><label>卡片名稱</label><input type="text" id="p-card" value="${esc(o.card)}" placeholder="例：國泰 CUBE 卡"><label>優惠內容</label><input type="text" id="p-name" value="${esc(o.name)}" placeholder="例：日本消費 3.5%"><label>適用類別</label><select id="p-cat">${['全部',...CATS].map(c=>`<option ${c==o.cat?'selected':''}>${c}</option>`).join('')}</select><div class="grid"><div><label>回饋率 %</label><input type="number" step="0.1" id="p-rate" value="${o.rate??''}"></div><div><label>回饋上限（元，空白＝無上限）</label><input type="number" id="p-cap" value="${o.cap||''}"></div><div><label>已回饋（元）</label><input type="number" id="p-used" value="${o.used||0}"></div><div></div><div><label>開始日</label><input type="date" id="p-s" value="${o.s||''}"></div><div><label>結束日</label><input type="date" id="p-e" value="${o.e||''}"></div></div><label>備註</label><textarea id="p-note" placeholder="例：需登錄活動、限指定通路、單筆上限">${esc(o.note)}</textarea><div class="acts"><button class="btn sm" data-o="ok" data-i="${i}">儲存</button><button class="btn sm c" data-o="no">取消</button></div></div>`;
 function offers(){let h='';S.cards.forEach((o,i)=>{if(pe===i){h+=oform(o,i);return}
 const f=rem(o)<=0,x=!live(o),p=cap(o)===Infinity?0:Math.min(100,(+o.used||0)/cap(o)*100);
-h+=`<div class="card ${f||x?'full':''}"><div class="tt nm">${esc(o.card)}</div><div>${esc(o.name)}</div><span class="pill">${o.cat}</span><span class="pill">${o.rate}%</span>${f?'<span class="pill f">額度已滿</span>':''}${x?'<span class="pill f">不在期限內</span>':''}${o.s||o.e?`<div class="tm">${o.s||'…'} ～ ${o.e||'…'}</div>`:''}${cap(o)!==Infinity?`<div class="bar" style="margin-top:6px"><i style="width:${p}%"></i></div><div class="tm">已回饋 ${money(+o.used||0)} / ${money(cap(o))}</div>`:`<div class="tm">已回饋 ${money(+o.used||0)}（無上限）</div>`}<div class="acts"><button class="btn sm s" data-o="ed" data-i="${i}">編輯</button><button class="btn sm c" data-o="del" data-i="${i}">刪除</button></div></div>`});
+h+=`<div class="card ${f||x?'full':''}"><div class="tt nm">${esc(o.card)}</div><div>${esc(o.name)}</div><span class="pill">${o.cat}</span><span class="pill">${o.rate}%</span>${f?'<span class="pill f">額度已滿</span>':''}${x?'<span class="pill f">不在期限內</span>':''}${o.s||o.e?`<div class="tm">${o.s||'…'} ～ ${o.e||'…'}</div>`:''}${cap(o)!==Infinity?`<div class="bar" style="margin-top:6px"><i style="width:${p}%"></i></div><div class="tm">已回饋 ${money(+o.used||0)} / ${money(cap(o))}</div>`:`<div class="tm">已回饋 ${money(+o.used||0)}（無上限）</div>`}${o.note?`<div class="nt">${esc(o.note)}</div>`:''}<div class="acts"><button class="btn sm s" data-o="ed" data-i="${i}">編輯</button><button class="btn sm c" data-o="del" data-i="${i}">刪除</button></div></div>`});
 if(pe==='new')h+=oform({cat:'全部'},'new');
 if(!S.cards.length&&pe!=='new')h='<div class="card empty">還沒有優惠，新增你的信用卡優惠吧</div>';
 if(pe===null)h+='<button class="btn" data-o="add">＋ 新增優惠</button>';$('#offers').innerHTML=h}
@@ -171,7 +169,7 @@ $('#chips').onclick=e=>{const c=e.target.dataset.c;if(c){pc=c;pay()}};$('#amt').
 $('#rec').onclick=e=>{const r=e.target.dataset.r;if(r==null)return;const o=S.cards[+r],a=+$('#amt').value||0;o.used=(+o.used||0)+Math.round(Math.min(a*o.rate/100,rem(o)));save();$('#amt').value='';pay()};
 $('#offers').onclick=e=>{const b=e.target.closest('[data-o]');if(!b)return;const a=b.dataset.o,i=b.dataset.i;
 if(a=='add')pe='new';else if(a=='ed')pe=+i;else if(a=='no')pe=null;else if(a=='del')S.cards.splice(+i,1);
-else if(a=='ok'){const v=k=>$('#p-'+k).value,o={card:v('card').trim()||'未命名卡片',name:v('name').trim(),cat:v('cat'),rate:+v('rate')||0,cap:+v('cap')||0,used:+v('used')||0,s:v('s'),e:v('e')};if(i=='new')S.cards.push(o);else S.cards[+i]=o;pe=null}
+else if(a=='ok'){const v=k=>$('#p-'+k).value,o={card:v('card').trim()||'未命名卡片',name:v('name').trim(),cat:v('cat'),rate:+v('rate')||0,cap:+v('cap')||0,used:+v('used')||0,s:v('s'),e:v('e'),note:v('note').trim()};if(i=='new')S.cards.push(o);else S.cards[+i]=o;pe=null}
 save();pay()};
 tabs();day();pay();
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
