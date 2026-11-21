@@ -71,8 +71,9 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;displa
 .tt,.tm,.nm,.tl li,.ck span,label{overflow-wrap:anywhere}img,svg{max-width:100%}
 .tw circle{animation:blink 1.6s steps(2) infinite}.tw circle:nth-child(2n){animation-delay:-.8s}.swing{transform-box:fill-box;transform-origin:50% 0;animation:swg 3s ease-in-out infinite alternate}@keyframes swg{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
 .nt{margin-top:4px;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;opacity:.85}#f-note,#p-note{height:64px;margin-top:0}.tc{display:inline-block;margin:0;font-size:15px;cursor:pointer}
+details.o>summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;gap:6px;align-items:center}details.o>summary::-webkit-details-marker{display:none}details.o>summary:before{content:"▸"}details.o[open]>summary:before{content:"▾"}details.o[open]>summary{margin-bottom:6px}h3{margin:16px 2px 8px;font-size:18px}
 </style></head><body>
-<nav><a href="#home">首頁</a><a href="#flight">航班</a><a href="#plan">行程</a><a href="#pay">優惠</a><a href="#stay">住宿</a></nav>
+<nav><a href="#home">首頁</a><a href="#pay">優惠</a><a href="#plan">行程</a><a href="#flight">航班</a><a href="#stay">住宿</a></nav>
 <main>
 <section id="home" style="margin-top:14px"><div class="card hero">
 <svg viewBox="0 0 360 230" role="img" aria-label="仙台與東京插圖：伊達政宗、光之都的櫸木、富士山、雷門燈籠、東京鐵塔與新幹線">
@@ -98,9 +99,9 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;displa
 <h1>仙台 × 東京</h1><p class="sub">12/1（二）– 12/7（一）　七天六夜</p>
 <div class="card cd" aria-live="polite"><span id="cdtxt"></span></div></section>
 
-<section id="flight"><h2>✈️ 航班</h2><div id="fl"></div></section>
+<section id="pay"><h2>💳 刷卡優惠</h2><div class="card c3"><div style="margin-bottom:6px">現在要買什麼？</div><div class="chips" id="chips"></div><label>指定店家（選填，點一下選取，再點取消）</label><div class="chips" id="stores"></div><label>預計消費金額（可不填）</label><div class="add" style="margin-top:0"><input type="number" inputmode="decimal" id="amt" placeholder="例：3000"><select id="ac" style="width:118px;flex:none"><option value="TWD">台幣 NT$</option><option value="JPY">日圓 ¥</option></select></div><div class="tm" id="cv" style="margin-top:4px"></div><div class="grid" style="margin-top:6px"><div><label>匯率：1 日圓 ＝ 幾台幣</label><input type="number" step="any" inputmode="decimal" id="rate"></div><div><label>&nbsp;</label><button class="btn sm s" id="rfx" type="button">更新匯率</button></div></div><div class="tm" id="rmsg"></div><div id="rec"></div></div><h3>我的優惠</h3><div id="offers"></div><h3>🧾 消費紀錄</h3><div id="log"></div></section>
 <section id="plan"><h2>🗓 每日行程</h2><div class="tabs" id="tabs"></div><div id="day"></div></section>
-<section id="pay"><h2>💳 刷卡優惠</h2><div class="card c3"><div style="margin-bottom:6px">現在要買什麼？</div><div class="chips" id="chips"></div><label>預計消費金額（台幣，可不填）</label><input type="number" inputmode="numeric" id="amt" placeholder="例：3000"><div id="rec"></div></div><div id="offers"></div></section>
+<section id="flight"><h2>✈️ 航班</h2><div id="fl"></div></section>
 <section id="stay"><h2>🏠 住宿資訊</h2><div id="st"></div></section>
 <section id="bk"><h2>💾 備份</h2><div class="card"><p style="margin:0 0 8px;font-size:14px">資料只存在這個瀏覽器。換手機前請先匯出，再到新裝置貼上匯入。</p>
 <button class="btn s" id="ex">匯出</button> <button class="btn c" id="im">匯入</button><textarea id="ta" placeholder="匯出的內容會顯示在這裡；匯入請貼上後按「匯入」"></textarea></div></section>
@@ -145,30 +146,51 @@ if(i=='new')A.push(it);else A[+i]=it;A.sort((x,y)=>(x.time||'99').localeCompare(
 $('#ex').onclick=()=>{const t=$('#ta');t.value=JSON.stringify(S);t.select();try{navigator.clipboard.writeText(t.value)}catch(e){}};
 $('#im').onclick=()=>{try{const d=JSON.parse($('#ta').value);if(!d.days)throw 0;S=d;save();location.reload()}catch(e){alert('匯入失敗，請確認內容完整')}};
 /* pay */
-S.cards=S.cards||[];let pc='餐廳',pe=null;
-const CATS=['餐廳','藥妝','購物','超商','交通','住宿','網購','其他'];
+const CATS=['餐廳','藥妝','購物','超商','交通','住宿','網購','其他'],uid=()=>Math.random().toString(36).slice(2,9);
+const SEED=[{card:'國泰cube卡',name:'秋日遊',cat:'購物',rate:5,cap:0,used:0,stores:'寶可夢中心,UNIQLO,Loft,ABC-MART',pay:'刷卡',note:'實體門市限定'},
+{card:'富邦J卡',name:'3%+加碼3%',cat:'全部',rate:6,cap:33000,used:0,min:1000,pay:'刷卡',note:'單筆滿新台幣1,000元'},
+{card:'玉山熊本熊 paypay',name:'3.5%免手續費',cat:'全部',rate:3.5,cap:2800,used:0,pay:'行動支付',note:'限用玉山錢包'},
+{card:'全支付',name:'3.5%+國泰加碼5%',cat:'全部',rate:8.5,cap:2000,used:0,max:1000,pay:'行動支付',note:'綁定國泰帳戶，單筆不超過1,000'}];
+S.log=S.log||[];if(!S.cards&&!S.seeded)S.cards=SEED.map(o=>({...o,id:uid(),v:2}));S.cards=S.cards||[];if(!S.cards.length&&!S.seeded)S.cards=SEED.map(o=>({...o,id:uid(),v:2}));S.seeded=1;
+const KEYS=[['cube',0],['J卡',1],['熊本熊',2],['全支付',3]];
+S.cards.forEach(o=>{if(!o.id)o.id=uid();if(o.v!==2){const k=KEYS.find(k=>(o.card||'').toLowerCase().includes(k[0].toLowerCase()));if(k){const z=SEED[k[1]];Object.assign(o,{rate:z.rate,cat:z.cat,min:z.min||0,max:z.max||0,stores:z.stores||'',pay:z.pay})}o.v=2}});save();
 const td=()=>{const d=new Date(),z=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())};
 const live=o=>(!o.s||td()>=o.s)&&(!o.e||td()<=o.e),cap=o=>+o.cap>0?+o.cap:Infinity,rem=o=>Math.max(0,cap(o)-(+o.used||0)),money=n=>n===Infinity?'無上限':'NT$'+Math.round(n).toLocaleString();
-function rec(){const a=+$('#amt').value||0,all=S.cards.filter(o=>o.cat==='全部'||o.cat===pc),
-c=all.filter(o=>live(o)&&rem(o)>0).map(o=>({o,r:a?Math.min(a*o.rate/100,rem(o)):0})).sort((x,y)=>y.r-x.r||y.o.rate-x.o.rate),fu=all.filter(o=>live(o)&&rem(o)<=0);let h='';
-if(!c.length)h='<div class="card" style="margin:10px 0 0">目前沒有可用的優惠'+(S.cards.length?'（可能額度已滿、已過期或類別不符）':'，請先在下方新增')+'。</div>';
-else{const t=c[0],o=t.o,fr=a*o.rate/100;
-h=`<div class="card rec" style="margin:10px 0 0"><div class="tm">推薦使用</div><div style="font-size:22px">${esc(o.card)}</div><div>${esc(o.name)}・回饋 ${o.rate}%</div>${a?`<div>預估回饋 ${money(t.r)}${t.r<fr?'（額度不足，只回饋剩餘部分）':''}</div>`:''}<div>剩餘額度 ${money(rem(o))}</div>${o.note?`<div class="nt">${esc(o.note)}</div>`:''}${a&&t.r>0?`<div class="acts"><button class="btn sm" data-r="${S.cards.indexOf(o)}">記一筆消費</button></div>`:''}</div>`;
-c.slice(1,3).forEach(x=>h+=`<div class="tm" style="margin-top:6px">備選：${esc(x.o.card)} ${esc(x.o.name)}・${x.o.rate}%・剩 ${money(rem(x.o))}</div>`)}
-if(fu.length)h+=`<div class="tm" style="margin-top:6px">已額滿：${fu.map(o=>esc(o.card)).join('、')}</div>`;$('#rec').innerHTML=h}
-const oform=(o,i)=>`<div class="card"><label>卡片名稱</label><input type="text" id="p-card" value="${esc(o.card)}" placeholder="例：國泰 CUBE 卡"><label>優惠內容</label><input type="text" id="p-name" value="${esc(o.name)}" placeholder="例：日本消費 3.5%"><label>適用類別</label><select id="p-cat">${['全部',...CATS].map(c=>`<option ${c==o.cat?'selected':''}>${c}</option>`).join('')}</select><div class="grid"><div><label>回饋率 %</label><input type="number" step="0.1" id="p-rate" value="${o.rate??''}"></div><div><label>回饋上限（元，空白＝無上限）</label><input type="number" id="p-cap" value="${o.cap||''}"></div><div><label>已回饋（元）</label><input type="number" id="p-used" value="${o.used||0}"></div><div></div><div><label>開始日</label><input type="date" id="p-s" value="${o.s||''}"></div><div><label>結束日</label><input type="date" id="p-e" value="${o.e||''}"></div></div><label>備註</label><textarea id="p-note" placeholder="例：需登錄活動、限指定通路、單筆上限">${esc(o.note)}</textarea><div class="acts"><button class="btn sm" data-o="ok" data-i="${i}">儲存</button><button class="btn sm c" data-o="no">取消</button></div></div>`;
-function offers(){let h='';S.cards.forEach((o,i)=>{if(pe===i){h+=oform(o,i);return}
-const f=rem(o)<=0,x=!live(o),p=cap(o)===Infinity?0:Math.min(100,(+o.used||0)/cap(o)*100);
-h+=`<div class="card ${f||x?'full':''}"><div class="tt nm">${esc(o.card)}</div><div>${esc(o.name)}</div><span class="pill">${o.cat}</span><span class="pill">${o.rate}%</span>${f?'<span class="pill f">額度已滿</span>':''}${x?'<span class="pill f">不在期限內</span>':''}${o.s||o.e?`<div class="tm">${o.s||'…'} ～ ${o.e||'…'}</div>`:''}${cap(o)!==Infinity?`<div class="bar" style="margin-top:6px"><i style="width:${p}%"></i></div><div class="tm">已回饋 ${money(+o.used||0)} / ${money(cap(o))}</div>`:`<div class="tm">已回饋 ${money(+o.used||0)}（無上限）</div>`}${o.note?`<div class="nt">${esc(o.note)}</div>`:''}<div class="acts"><button class="btn sm s" data-o="ed" data-i="${i}">編輯</button><button class="btn sm c" data-o="del" data-i="${i}">刪除</button></div></div>`});
-if(pe==='new')h+=oform({cat:'全部'},'new');
+const sl=o=>(o.stores||'').split(/[,，、\s]+/).filter(Boolean),allStores=()=>[...new Set(S.cards.flatMap(sl))];
+let pc='餐廳',ps='',pe=null;
+S.rate=+S.rate>0?+S.rate:0.21;S.ac=S.ac||'TWD';
+const amtTWD=()=>{const v=+$('#amt').value||0;return S.ac=='JPY'?v*S.rate:v},yen=n=>'¥'+Math.round(n/S.rate).toLocaleString();
+function cv(){const v=+$('#amt').value||0;$('#cv').textContent=!v?'':S.ac=='JPY'?'≈ '+money(v*S.rate)+'（匯率 '+S.rate+'）':'≈ ¥'+Math.round(v/S.rate).toLocaleString()+'（匯率 '+S.rate+'）'}
+const bs=(o,a)=>Math.min(a,+o.max>0?+o.max:Infinity),calc=(o,a)=>a>0?Math.min(bs(o,a)*o.rate/100,rem(o)):0;
+const why=(o,a)=>!live(o)?'不在期限內':rem(o)<=0?'額度已滿':(a>0&&+o.min>0&&a<+o.min)?'單筆未滿 '+money(+o.min):'';
+const ctx=o=>{const st=sl(o);return st.length?(ps&&st.some(x=>x.toLowerCase()===ps.toLowerCase())):(o.cat==='全部'||o.cat===pc)};
+const nt=o=>o.note?`<div class="nt">${esc(o.note)}</div>`:'';
+function chips(){$('#chips').innerHTML=CATS.map(c=>`<button class="chip ${c==pc?'on':''}" data-c="${c}">${c}</button>`).join('');const st=allStores();$('#stores').innerHTML=st.length?st.map(x=>`<button class="chip ${x==ps?'on':''}" data-s="${esc(x)}">${esc(x)}</button>`).join(''):'<span class="tm">在優惠裡填「適用店家」，這裡會出現快捷按鈕</span>'}
+function rec(){cv();const a=amtTWD(),m=S.cards.filter(ctx),ok=m.filter(o=>!why(o,a)).map(o=>({o,r:calc(o,a)})).sort((x,y)=>y.r-x.r||y.o.rate-x.o.rate),bad=m.filter(o=>why(o,a));let h='';
+if(!ok.length)h='<div class="card" style="margin:10px 0 0">目前沒有符合條件的優惠。可以改選類別或店家，或用一般付款方式。</div>';
+else{const t=ok[0],o=t.o;h=`<div class="card rec" style="margin:10px 0 0"><div class="tm">推薦使用${o.pay?'・'+esc(o.pay):''}</div><div style="font-size:22px">${esc(o.card)}</div><div>${esc(o.name)}・回饋 ${o.rate}%</div>${a?`<div>這筆預估回饋 ${money(t.r)}${S.ac=='JPY'?`（約 ${yen(t.r)}）`:''}${+o.max>0&&a>+o.max?`（單筆只算前 ${money(+o.max)}）`:''}${t.r<bs(o,a)*o.rate/100-.01?'（額度不足，只回饋剩餘部分）':''}</div>`:''}<div>剩餘額度 ${money(rem(o))}</div>${nt(o)}${a&&t.r>0?`<div class="acts"><button class="btn sm" data-r="${o.id}">記一筆消費</button></div>`:''}</div>`;
+ok.slice(1,3).forEach(x=>h+=`<div class="tm" style="margin-top:6px">備選：${esc(x.o.card)}・${x.o.rate}%${a?`・預估 ${money(x.r)}${S.ac=='JPY'?`（約 ${yen(x.r)}）`:''}`:''}</div>`)}
+bad.forEach(o=>h+=`<div class="tm full" style="margin-top:4px">已排除：${esc(o.card)}（${why(o,a)}）</div>`);$('#rec').innerHTML=h}
+const oform=o=>`<div class="card"><label>卡片名稱</label><input type="text" id="p-card" value="${esc(o.card)}" placeholder="例：國泰 CUBE 卡"><label>優惠內容</label><input type="text" id="p-name" value="${esc(o.name)}" placeholder="例：日本消費 3.5%"><label>適用類別（填了適用店家就以店家為主）</label><select id="p-cat">${['全部',...CATS].map(c=>`<option ${c==o.cat?'selected':''}>${c}</option>`).join('')}</select><label>適用店家（選填，用逗號隔開）</label><input type="text" id="p-stores" value="${esc(o.stores)}" placeholder="例：UNIQLO, Loft"><div class="grid"><div><label>回饋率 %</label><input type="number" step="0.1" id="p-rate" value="${o.rate??''}"></div><div><label>回饋上限（元，空白＝無上限）</label><input type="number" id="p-cap" value="${o.cap||''}"></div><div><label>已回饋（元）</label><input type="number" id="p-used" value="${o.used||0}"></div><div><label>付款方式</label><select id="p-pay">${[['','不限'],['刷卡','刷卡'],['行動支付','行動支付']].map(x=>`<option value="${x[0]}" ${x[0]==(o.pay||'')?'selected':''}>${x[1]}</option>`).join('')}</select></div><div><label>單筆最低消費（元）</label><input type="number" id="p-min" value="${o.min||''}"></div><div><label>單筆最多計回饋（元）</label><input type="number" id="p-max" value="${o.max||''}"></div><div><label>開始日</label><input type="date" id="p-s" value="${o.s||''}"></div><div><label>結束日</label><input type="date" id="p-e" value="${o.e||''}"></div></div><label>備註</label><textarea id="p-note" placeholder="例：需登錄活動">${esc(o.note)}</textarea><div class="acts"><button class="btn sm" data-o="ok" data-id="${o.id||'new'}">儲存</button><button class="btn sm c" data-o="no">取消</button></div></div>`;
+function offers(){let h='';S.cards.forEach(o=>{if(pe===o.id){h+=oform(o);return}
+const r=rem(o),f=r<=0,x=!live(o),p=cap(o)===Infinity?0:Math.min(100,(+o.used||0)/cap(o)*100),st=sl(o);
+h+=`<details class="card o ${f||x?'full':''}"><summary><b>${esc(o.card)}</b><span class="pill">${o.rate}%</span>${f?'<span class="pill f">額度已滿</span>':x?'<span class="pill f">不在期限內</span>':`<span class="tm">剩 ${money(r)}</span>`}</summary><div>${esc(o.name)}</div>${o.pay?`<span class="pill">${esc(o.pay)}</span>`:''}<span class="pill">${st.length?'限指定店家':o.cat}</span>${+o.min>0?`<span class="pill">單筆滿 ${money(+o.min)}</span>`:''}${+o.max>0?`<span class="pill">單筆最多算 ${money(+o.max)}</span>`:''}${st.length?`<div class="tm">店家：${st.map(esc).join('、')}</div>`:''}${o.s||o.e?`<div class="tm">${o.s||'…'} ～ ${o.e||'…'}</div>`:''}${cap(o)!==Infinity?`<div class="bar" style="margin-top:6px"><i style="width:${p}%"></i></div><div class="tm">已回饋 ${money(+o.used||0)} / ${money(cap(o))}</div>`:`<div class="tm">已回饋 ${money(+o.used||0)}（無上限）</div>`}${nt(o)}<div class="acts"><button class="btn sm s" data-o="ed" data-id="${o.id}">編輯</button><button class="btn sm c" data-o="del" data-id="${o.id}">刪除</button></div></details>`});
+if(pe==='new')h+=oform({cat:'全部'});
 if(!S.cards.length&&pe!=='new')h='<div class="card empty">還沒有優惠，新增你的信用卡優惠吧</div>';
 if(pe===null)h+='<button class="btn" data-o="add">＋ 新增優惠</button>';$('#offers').innerHTML=h}
-function pay(){$('#chips').innerHTML=CATS.map(c=>`<button class="chip ${c==pc?'on':''}" data-c="${c}">${c}</button>`).join('');rec();offers()}
-$('#chips').onclick=e=>{const c=e.target.dataset.c;if(c){pc=c;pay()}};$('#amt').oninput=rec;
-$('#rec').onclick=e=>{const r=e.target.dataset.r;if(r==null)return;const o=S.cards[+r],a=+$('#amt').value||0;o.used=(+o.used||0)+Math.round(Math.min(a*o.rate/100,rem(o)));save();$('#amt').value='';pay()};
-$('#offers').onclick=e=>{const b=e.target.closest('[data-o]');if(!b)return;const a=b.dataset.o,i=b.dataset.i;
-if(a=='add')pe='new';else if(a=='ed')pe=+i;else if(a=='no')pe=null;else if(a=='del')S.cards.splice(+i,1);
-else if(a=='ok'){const v=k=>$('#p-'+k).value,o={card:v('card').trim()||'未命名卡片',name:v('name').trim(),cat:v('cat'),rate:+v('rate')||0,cap:+v('cap')||0,used:+v('used')||0,s:v('s'),e:v('e'),note:v('note').trim()};if(i=='new')S.cards.push(o);else S.cards[+i]=o;pe=null}
+function logs(){$('#log').innerHTML=S.log.length?S.log.slice(0,10).map((l,i)=>`<div class="card"><div class="tt">${esc(l.n)}</div><div class="tm">${esc(l.t)}・消費 ${money(l.a)}${l.y?`（¥${l.y.toLocaleString()}）`:''}・回饋 ${money(l.r)}</div><div class="acts"><button class="btn sm c" data-u="${i}">撤銷</button></div></div>`).join(''):'<div class="card empty">還沒有消費紀錄</div>'}
+function pay(){chips();rec();offers();logs()}
+$('#chips').onclick=e=>{const c=e.target.dataset.c;if(c){pc=c;pay()}};
+$('#stores').onclick=e=>{const x=e.target.dataset.s;if(x!=null){ps=ps===x?'':x;pay()}};$('#amt').oninput=rec;
+$('#ac').onchange=e=>{S.ac=e.target.value;save();rec()};
+$('#rate').oninput=e=>{const v=+e.target.value;if(v>0){S.rate=v;save();rec()}};
+$('#rfx').onclick=async()=>{const m=$('#rmsg');m.textContent='更新中…';try{const r=await fetch('https://open.er-api.com/v6/latest/JPY'),j=await r.json(),t=j&&j.rates&&j.rates.TWD;if(!t)throw 0;S.rate=+(+t).toFixed(4);S.rd=td();save();$('#rate').value=S.rate;m.textContent='已更新：1 日圓 ≈ '+S.rate+' 台幣（'+S.rd+'）';rec()}catch(e){m.textContent='無法取得匯率（可能沒有網路），請手動輸入'}};
+$('#rate').value=S.rate;$('#ac').value=S.ac;$('#rmsg').textContent=S.rd?'匯率更新於 '+S.rd:'目前是預設匯率 0.21（參考台灣銀行 11/18 牌告），出發前建議更新或手動修改';
+$('#rec').onclick=e=>{const id=e.target.dataset.r;if(!id)return;const o=S.cards.find(x=>x.id===id),a=amtTWD();if(!o||!a)return;const r=Math.round(calc(o,a));o.used=(+o.used||0)+r;S.log.unshift({id,n:o.card+'（'+o.name+'）',a:Math.round(a),y:S.ac=='JPY'?Math.round(+$('#amt').value):0,r,t:new Date().toLocaleString('zh-TW',{hour12:false})});S.log=S.log.slice(0,100);save();$('#amt').value='';pay()};
+$('#log').onclick=e=>{const i=e.target.dataset.u;if(i==null)return;const l=S.log[+i],o=S.cards.find(x=>x.id===l.id);if(o)o.used=Math.max(0,(+o.used||0)-l.r);S.log.splice(+i,1);save();pay()};
+$('#offers').onclick=e=>{const b=e.target.closest('[data-o]');if(!b)return;const a=b.dataset.o,id=b.dataset.id,i=S.cards.findIndex(o=>o.id===id);
+if(a=='add')pe='new';else if(a=='ed')pe=id;else if(a=='no')pe=null;else if(a=='del'){if(i>=0)S.cards.splice(i,1)}
+else if(a=='ok'){const v=k=>$('#p-'+k).value,o={id:i>=0?id:uid(),v:2,card:v('card').trim()||'未命名卡片',name:v('name').trim(),cat:v('cat'),rate:+v('rate')||0,cap:+v('cap')||0,used:+v('used')||0,s:v('s'),e:v('e'),note:v('note').trim(),min:+v('min')||0,max:+v('max')||0,stores:v('stores').trim(),pay:v('pay')};if(i>=0)S.cards[i]=o;else S.cards.push(o);pe=null}
 save();pay()};
 tabs();day();pay();
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
